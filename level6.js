@@ -66,3 +66,57 @@ function digital_root(n) {
 }
 
 //EQUAL SIDES OF AN ARRAY
+//You are going to be given an array of integers.
+//Your job is to take that array and find an index N where the sum of the integers to the left of N is equal to the sum of the integers to the right of N.
+//If there is no index that would make this happen, return -1.
+
+function findEvenIndex(arr) {
+    for (i = 0; i < arr.length; i++) {
+        let begSum = arr.slice(0, i).reduce((a, b) => a + b, 0)
+        let endSum = arr.slice(i + 1).reduce((a, b) => a + b, 0)
+        if (begSum === endSum) return i
+    }
+    return -1
+}
+
+//PERSISTENT BUGGER
+//Write a function, persistence, that takes in a positive parameter num and returns its multiplicative persistence, 
+//which is the number of times you must multiply the digits in num until you reach a single digit.
+
+function persistence(num, i = 0) {
+    return (num.toString().length > 1)
+        ? persistence(num.toString().split('').reduce((a, c) => a *= Number(c)), i += 1)
+        : i
+}
+
+//YOUR ORDER PLEASE
+// Your task is to sort a given string.Each word in the String will contain a single number.This number is the position the word should have in the result.
+    // Note: Numbers can be from 1 to 9. So 1 will be the first word(not 0).
+// If the input String is empty, return an empty String.The words in the input String will only contain valid consecutive numbers.
+// For an input: "is2 Thi1s T4est 3a" the function should return "Thi1s is2 3a T4est"
+
+function order(words) {
+    arr = words.split(' ')
+    answers = []
+    for (i = 1; i <= arr.length; i++) {
+        let answer = arr.filter(x => x.includes(i))
+        answers.push(answer[0])
+    }
+    return answers.join(' ')
+}
+
+//STOP GNINNIPS MY SDROW
+//Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). 
+//Strings passed in will consist of only letters and spaces.
+//Spaces will be included only when more than one word is present.
+
+function spinWords(s) {
+    return s.split(' ').map(word => (word.length > 4) ? word.split('').reverse().join('') : word).join(' ')
+}
+
+//DUBSTEP
+//This description is really long, and not worth including here.
+
+function songDecoder(song) {
+    return song.split('WUB').filter(x => x !== '').join(' ')
+}
