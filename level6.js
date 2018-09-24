@@ -120,3 +120,59 @@ function spinWords(s) {
 function songDecoder(song) {
     return song.split('WUB').filter(x => x !== '').join(' ')
 }
+
+//Tribonacci Sequence (Without Recursion)
+function tribonacci(signature, n) {
+    let answer = signature
+
+    while (answer.length < n) {
+        let lastThree = answer.slice(answer.length - 3)
+        let newNumber = lastThree.reduce((acc, curr) => acc += curr, 0)
+        answer.push(newNumber)
+    }
+
+    return answer.slice(0, n)
+}
+
+//A better way to do that:
+function tribonacci(signature, n) {
+    const result = signature.slice(0, n);
+    while (result.length < n) {
+        result[result.length] = result.slice(-3).reduce((p, c) => p + c, 0);
+    }
+    return result;
+}
+
+//Duplicate Encoder
+function duplicateEncode(word) {
+    word = word.toLowerCase().split('')
+    return word.map((letter, i) => {
+        let others = word.slice()
+        others.splice(i, 1)
+        if (others.includes(letter)) return ')'
+        return '('
+    }).join('')
+}
+
+//Take a Ten Minute Walk (I wanted to practice a switch - case statment)
+function isValidWalk(walk) {
+    let length = walk.length, x = 0, y = 0
+    walk.forEach(direction => {
+        switch (direction) {
+            case 'n': y += 1; break
+            case 'e': x += 1; break
+            case 's': y -= 1; break
+            case 'w': x -= 1; break
+        }
+    })
+    return length === 10 && x === 0 && y == 0
+}
+
+//another clever answer:
+function isValidWalk(walk) {
+    function count(val) {
+        return walk.filter(function (a) { return a == val; }).length;
+    }
+    return walk.length == 10 && count('n') == count('s') && count('w') == count('e');
+}
+
