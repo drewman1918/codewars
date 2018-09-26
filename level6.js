@@ -176,3 +176,38 @@ function isValidWalk(walk) {
     return walk.length == 10 && count('n') == count('s') && count('w') == count('e');
 }
 
+//FIBONACCI (assuming 0 is the first number, not 1)
+//Given n, return the nth number in the fibonacci sequence IF n is the index.
+function fibonacci(n) {
+    let base = [0, 1]
+    for (let i = 2; i <= n; i++) {
+        base[i] = base[i - 1] + base[i - 2]
+    }
+    return base[n]
+}
+
+//Same but IF n is the number in the sequence.
+function fibonacci(n) {
+    let base = [0, 1]
+    for (let i = 2; i < n; i++) {
+        base[i] = base[i - 1] + base[i - 2]
+    }
+    return base[n - 1]
+}
+
+//Given n, return the nth number in the fibonacci sequence with recursion if returning the number at INDEX n.
+
+function fibonacci(n) {
+    if (n < 1) return 0
+    if (n <= 2) return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+//Given n, return the nth number in the fibonacci sequence with recursion if returning the number at the nth position.
+
+function fibonacci(n) {
+    if (n <= 1) return 0
+    if (n <= 3) return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
