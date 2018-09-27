@@ -211,3 +211,11 @@ function fibonacci(n) {
     return fibonacci(n - 1) + fibonacci(n - 2)
 }
 
+//Using Binet's formula to calculate the fibonacci
+function fibonacci(n) {
+    let sqrt5 = Math.sqrt(5)
+    let Phi = (1 + sqrt5) / 2
+    let phi = (1 - sqrt5) / 2
+
+    return Math.round((Math.pow(Phi, n) - Math.pow(phi, n)) / sqrt5)
+}
